@@ -146,8 +146,67 @@ public interface Payable {
      }
 
      public class SalariedEmployee extends Employee {
+        private double weeklySalary; 
 
-        
+        public SalariedEmployee(String first, String last, String ssn, double salary) {
+            // super(first, last, ssn); 
+            setWeeklySalary(salary); 
+        }
+        public void setWeeklySalary(double salary) {
+
+            if (salary >= 0.0) {
+                weeklySalary = salary; 
+            }
+            else {
+                throw new IllegalArgumentException("number cannot be less than 0");
+
+            }
+            
+
+            
+        }
+
+        public double getWeeklySalary() {
+            return weeklySalary;
+        }
+
+        @Override
+        public double getPaymentAmount() {
+            // TODO Auto-generated method stub
+            return getWeeklySalary();
+        }
+
+        @Override
+        public String toString() {
+            return String.format("salaried Employee: %s",super.toString(), " weekly salary ", getWeeklySalary());
+        }
+
+     }
+
+
+     public class Tester {
+
+        public static void main(String[] args) {
+
+            Payable[] payObj = new Payable[5]; 
+
+            payObj[0] = new Invoice("01234", "seat", 2, 375.54); 
+            payObj[1] = new Invoice("34023", "table", 4, 254.54);
+            payObj[2] = new Invoice("67953", "bicycle", 5, 143.56);
+            payObj[3]= new SalariedEmployee("Adel", "Akhmed", "450-345-7559", 2500.00); 
+            payObj[4]= new SalariedEmployee("John", "Smith", "768-450-6075", 1456.65); 
+            System.out.println("Invoice and Employees Invoked: ");
+            for (Payable currentPayable: payObj) {
+                System.out.printf("%s \n%s: $$,.2f\n\n", currentPayable.toString(), "payment due", currentPayable.getPaymentAmount());
+
+
+
+            }
+
+
+
+
+        }
      }
 
     
