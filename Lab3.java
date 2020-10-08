@@ -68,11 +68,17 @@ public interface Payable {
             }
         }
 
+       
+
+       
+
 
         @Override
         public String toString() {
             return String.format("%s: \n\s:", "invoice", "part number", getPartNum(partNum), getPartDescription(Partdescription), "quantity", "price per item", getPartCount(), getPartPrice());
         }
+
+
         
         @Override
     public double getPaymentAmount() {
@@ -84,6 +90,73 @@ public interface Payable {
 
 
     }
+
+        public abstract class Employee implements Payable {
+
+            private String firstName;
+            private String lastName; 
+            private String socialSecurityNumber; 
+
+            public void Emoloyee(String first, String last, String ssn) {
+                firstName = first; 
+                lastName = last; 
+                socialSecurityNumber = ssn; 
+           }
+
+           // get function for the first name
+           public String getFirstName() {
+
+            return firstName; 
+        }
+
+        // set function for the first name 
+        public void setFirstName(String first) {
+
+
+            firstName = first;
+        }
+
+        // get function for the last name
+        public String getLastName() {
+            return lastName; 
+        }
+
+        // set function for the last name
+        public void setLastName(String last){
+            lastName = last;
+        }
+
+        // get function for ssn
+        public String getSSN() {
+            return socialSecurityNumber; 
+        }
+
+
+        // set function for ssn
+        public void setSSN(String ssn) {
+            socialSecurityNumber = ssn; 
+        }
+
+        @Override
+        public String toString() {
+
+            return String.format("%s %s\nSocial Security Number: %s", getFirstName(), getLastName(), getSSN()); 
+        }
+
+     }
+
+     public class SalariedEmployee extends Employee {
+
+        
+     }
+
+    
+
+        
+
+
+
+   
 
    
 
